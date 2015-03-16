@@ -1,33 +1,12 @@
-/*apply plugin: 'java'
-
-sourceCompatibility = 1.5
-version = '1.0'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}*/
-
+apply plugin: 'java'
 repositories{
     mavenCentral()
 }
 
-apply plugin: 'java'
 dependencies{
     compile 'org.apache.commons:commons-lang3:3.3.2'
 }
 
-/*sourceSets{
-    main.java.srcDir 'src/main/java'
-}*/
-jar{
-    from configurations.compile.collect { zipTree it }
-    manifest.attributes "Main-Class": 'Main'
-}
-//if main class is under any package then (main 'com.lynas.Main') assuming com.lynas is my package name
 task run(type: JavaExec){
     main 'Main'
     classpath = runtimeClasspath
@@ -40,15 +19,17 @@ task runJar(type: Exec, dependsOn: jar){
 
 task hello{
     onlyIf{true}
-} doLast {
-    println 'hello world'
+    doLast {
+        println 'hello world'
+    }
 }
-
 //hello.enabled false
+
 task writeGreeting{
     outputs.file 'greeting.txt'
-} doLast {
-    file('greeting.txt').text = 'Hello ev1'
+    doLast {
+        file('greeting.txt').text = 'Hello ev1'
+    }
 }
 
 
