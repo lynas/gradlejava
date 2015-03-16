@@ -45,7 +45,6 @@ task hello{
 }
 
 //hello.enabled false
-
 task writeGreeting{
     outputs.file 'greeting.txt'
 } doLast {
